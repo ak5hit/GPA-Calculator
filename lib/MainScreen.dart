@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'ITSemesterFour.dart';
 
 const branchNames = ['IT', 'ECE'];
 const pointer = ['GPA', 'CGPA'];
+const theoryString = 'Theory Grade';
+const labString = 'Lab Grade';
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key key, this.title}) : super(key: key);
@@ -24,11 +27,11 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         title: Center(child: Text(widget.title)),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: ListView(
         children: <Widget>[
           _buildChoices(),
           _buildSemesterDropDown(),
+          ITSemesterFour()
         ],
       ),
     );
