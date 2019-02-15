@@ -80,6 +80,46 @@ String calculateSemFiveGPA({String cneTheory = '',
   return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
 }
 
+String calculateSemSixGPA({String cdoTheory = '',
+  String cdoLab = '',
+  String ivpTheory = '',
+  String ivpLab = '',
+  String dmwTheory = '',
+  String dmwLab = '',
+  String elective1 = '',
+  String elective2 = '',
+  String miniProject = ''}) {
+  double cT = pointerForGrade(formatInputGrade(cdoTheory));
+  double cL = pointerForGrade(formatInputGrade(cdoLab));
+  double iT = pointerForGrade(formatInputGrade(ivpTheory));
+  double iL = pointerForGrade(formatInputGrade(ivpLab));
+  double dT = pointerForGrade(formatInputGrade(dmwTheory));
+  double dL = pointerForGrade(formatInputGrade(dmwLab));
+  double e1 = pointerForGrade(formatInputGrade(elective1));
+  double e2 = pointerForGrade(formatInputGrade(elective2));
+  double mP = pointerForGrade(formatInputGrade(miniProject));
+
+  double fp = ((cT * 3 +
+      cL * 2 +
+      iT * 3 +
+      iL * 2 +
+      dT * 3 +
+      dL * 2 +
+      e1 * 3 +
+      e2 * 3 +
+      mP * 5) /
+      (3 * (cT == 0 ? 0 : 1) +
+          2 * (cL == 0 ? 0 : 1) +
+          3 * (iT == 0 ? 0 : 1) +
+          2 * (iL == 0 ? 0 : 1) +
+          3 * (dT == 0 ? 0 : 1) +
+          2 * (dL == 0 ? 0 : 1) +
+          3 * (e1 == 0 ? 0 : 1) +
+          3 * (e2 == 0 ? 0 : 1) +
+          5 * (mP == 0 ? 0 : 1)));
+  return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
+}
+
 String formatInputGrade(String inputGrade) => inputGrade.toUpperCase();
 
 double pointerForGrade(String grade) {
