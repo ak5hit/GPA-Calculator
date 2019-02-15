@@ -3,6 +3,7 @@ import 'ITSemesterThree.dart';
 import 'ITSemesterFour.dart';
 import 'ITSemesterFive.dart';
 import 'ITSemesterSix.dart';
+import 'ITSemesterSeven.dart';
 
 const branchNames = ['IT', 'ECE'];
 const pointer = ['GPA', 'CGPA'];
@@ -54,6 +55,10 @@ class _MainScreenState extends State<MainScreen> {
         break;
       case 6:
         mainBodyColumn.children.add(ITSemesterSix(updatePointerCallback));
+        break;
+      case 7:
+        mainBodyColumn.children.add(ITSemesterSeven(updatePointerCallback));
+        break;
     }
 
     return Scaffold(

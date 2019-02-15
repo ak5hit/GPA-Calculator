@@ -120,6 +120,34 @@ String calculateSemSixGPA({String cdoTheory = '',
   return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
 }
 
+String calculateSemSevenGPA({String simTheory = '',
+  String simLab = '',
+  String orbTheory = '',
+  String elective1 = '',
+  String elective2 = '',
+  String miniProject = ''}) {
+  double sT = pointerForGrade(formatInputGrade(simTheory));
+  double sL = pointerForGrade(formatInputGrade(simLab));
+  double oT = pointerForGrade(formatInputGrade(orbTheory));
+  double e1 = pointerForGrade(formatInputGrade(elective1));
+  double e2 = pointerForGrade(formatInputGrade(elective2));
+  double mP = pointerForGrade(formatInputGrade(miniProject));
+
+  double fp = ((sT * 3 +
+      sL * 2 +
+      oT * 3 +
+      e1 * 3 +
+      e2 * 3 +
+      mP * 5) /
+      (3 * (sT == 0 ? 0 : 1) +
+          2 * (sL == 0 ? 0 : 1) +
+          2 * (oT == 0 ? 0 : 1) +
+          3 * (e1 == 0 ? 0 : 1) +
+          3 * (e2 == 0 ? 0 : 1) +
+          5 * (mP == 0 ? 0 : 1)));
+  return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
+}
+
 String formatInputGrade(String inputGrade) => inputGrade.toUpperCase();
 
 double pointerForGrade(String grade) {
