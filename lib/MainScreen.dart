@@ -16,10 +16,23 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  var _selectedBranch = 0;
-  var _selectedPointer = 0;
-  var _selectedSemester = 1;
-  var _semesterDropDownLabel = 'Semester';
+  int _selectedBranch = 0;
+  int _selectedPointer = 0;
+  int _selectedSemester = 1;
+  String finalPointer = '0.0';
+  List<DropdownMenuItem<int>> _semestersDropDownItems;
+
+  updatePointerCallback(String finalPointer) {
+    setState(() {
+      this.finalPointer = finalPointer;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _semestersDropDownItems = _getGPADropDownItems();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,31 +40,17 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         title: Center(child: Text(widget.title)),
       ),
-      body: ListView(
+      body: Column(
         children: <Widget>[
           _buildChoices(),
           _buildSemesterDropDown(),
-          ITSemesterFour()
+          ITSemesterFour(updatePointerCallback)
         ],
       ),
     );
   }
 
   Widget _buildSemesterDropDown() {
-    var selectSemesterLabel = Text(
-      '$_semesterDropDownLabel',
-      style: Theme.of(context).textTheme.title,
-    );
-
-    var semesters = List<DropdownMenuItem>.generate(8, (int index) {
-      return DropdownMenuItem(
-          value: index + 1,
-          child: Text(
-            "Semester ${index + 1}",
-            softWrap: true,
-          ));
-    });
-
     var dropDown = Container(
       child: Theme(
         data: Theme.of(context).copyWith(
@@ -62,13 +61,23 @@ class _MainScreenState extends State<MainScreen> {
           alignedDropdown: true,
           child: DropdownButton(
             value: _selectedSemester,
-            items: semesters,
+            items: _semestersDropDownItems,
             onChanged: _handleSemesterSelection,
-            style: Theme.of(context).textTheme.title,
+            style: Theme
+                .of(context)
+                .textTheme
+                .title
+                .copyWith(
+                fontWeight: FontWeight.w300,
+                fontSize: 24.0),
           ),
         )),
       ),
     );
+
+    var finalPointerWidget = Text('$finalPointer',
+      style: TextStyle(
+        color: Colors.black, fontSize: 28.0, fontWeight: FontWeight.w500,),);
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 8.0),
@@ -81,9 +90,31 @@ class _MainScreenState extends State<MainScreen> {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[selectSemesterLabel, dropDown],
+        children: <Widget>[dropDown, finalPointerWidget,],
       ),
     );
+  }
+
+  List<DropdownMenuItem<int>> _getGPADropDownItems() {
+    return List<DropdownMenuItem<int>>.generate(8, (int index) {
+      return DropdownMenuItem<int>(
+          value: index + 1,
+          child: Text(
+            "Semester ${index + 1}",
+            softWrap: true,
+          ));
+    }).toList();
+  }
+
+  List<DropdownMenuItem<int>> _getCGPADropDownItems() {
+    return List<DropdownMenuItem<int>>.generate(8, (int index) {
+      return DropdownMenuItem<int>(
+          value: index + 1,
+          child: Text(
+            index == 0 ? '1 Semester Done' : '${index + 1} Semesters Done',
+            softWrap: true,
+          ));
+    }).toList();
   }
 
   Widget _buildChoices() {
@@ -186,8 +217,9 @@ class _MainScreenState extends State<MainScreen> {
     if (_selectedPointer != index) {
       setState(() {
         _selectedPointer = selected ? index : 0;
-        _semesterDropDownLabel =
-            _selectedPointer == 0 ? 'Semester' : 'Semesters Done';
+        _semestersDropDownItems = _selectedPointer == 0
+            ? _getGPADropDownItems()
+            : _getCGPADropDownItems();
       });
     }
   }
