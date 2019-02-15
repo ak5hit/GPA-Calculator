@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'MainScreen.dart';
 import 'Utils.dart';
 
+import 'WithoutOverScrollShadowBehaviour.dart';
+
 // ignore: must_be_immutable
 class ITSemesterFour extends StatefulWidget {
 
@@ -30,24 +32,27 @@ class _ITSemesterFourState extends State<ITSemesterFour> {
     return Flexible(
       child: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: ListView(
-          shrinkWrap: false,
-          children: <Widget>[
-            _createGradeInput(
-              'Mathematics - 3', false, _updateMathsGrade, null,),
-            _createGradeInput(
-              'Design and Analysis of Algorithms', true,
-              _updateDAATheoryGrade, _updateDAALabGrade,),
-            _createGradeInput(
-              'Principles of Programming Languages', false,
-              _updatePPLGrade, null,),
-            _createGradeInput(
-              'Database Management Systems', true,
-              _updateDBMSTheoryGrade, _updateDBMSLabGrade,),
-            _createGradeInput(
-              'Principles of Communication', true,
-              _updatePOCTheoryGrade, _updatePOCLabGrade,),
-          ],),
+        child: ScrollConfiguration(
+          behavior: WithoutOverScrollShadowBehaviour(),
+          child: ListView(
+            shrinkWrap: false,
+            children: <Widget>[
+              _createGradeInput(
+                'Mathematics - 3', false, _updateMathsGrade, null,),
+              _createGradeInput(
+                'Design and Analysis of Algorithms', true,
+                _updateDAATheoryGrade, _updateDAALabGrade,),
+              _createGradeInput(
+                'Principles of Programming Languages', false,
+                _updatePPLGrade, null,),
+              _createGradeInput(
+                'Database Management Systems', true,
+                _updateDBMSTheoryGrade, _updateDBMSLabGrade,),
+              _createGradeInput(
+                'Principles of Communication', true,
+                _updatePOCTheoryGrade, _updatePOCLabGrade,),
+            ],),
+        ),
       ),
     );
   }

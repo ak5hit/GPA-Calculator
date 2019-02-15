@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'ITSemesterThree.dart';
 import 'ITSemesterFour.dart';
+import 'ITSemesterFive.dart';
 
 const branchNames = ['IT', 'ECE'];
 const pointer = ['GPA', 'CGPA'];
@@ -46,6 +47,9 @@ class _MainScreenState extends State<MainScreen> {
         break;
       case 4:
         mainBodyColumn.children.add(ITSemesterFour(updatePointerCallback));
+        break;
+      case 5:
+        mainBodyColumn.children.add(ITSemesterFive(updatePointerCallback));
         break;
     }
 

@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'MainScreen.dart';
 import 'Utils.dart';
 
+import 'WithoutOverScrollShadowBehaviour.dart';
+
 // ignore: must_be_immutable
 class ITSemesterThree extends StatefulWidget {
 
@@ -30,24 +32,27 @@ class _ITSemesterThreeState extends State<ITSemesterThree> {
     return Flexible(
       child: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: ListView(
-          shrinkWrap: false,
-          children: <Widget>[
-            _createGradeInput(
-              'Mathematics - 2', false, _updateMathsGrade, null,),
-            _createGradeInput(
-              'Operating System', true,
-              _updateOSTheoryGrade, _updateOSLabGrade,),
-            _createGradeInput(
-              'Theory of Computation', false,
-              _updateTOCGrade, null,),
-            _createGradeInput(
-              'Object Oriented Methodologies', true,
-              _updateOOMTheoryGrade, _updateOOMLabGrade,),
-            _createGradeInput(
-              'Microprocessors', true,
-              _updateMIPTheoryGrade, _updateMICLabGrade,),
-          ],),
+        child: ScrollConfiguration(
+          behavior: WithoutOverScrollShadowBehaviour(),
+          child: ListView(
+            shrinkWrap: false,
+            children: <Widget>[
+              _createGradeInput(
+                'Mathematics - 2', false, _updateMathsGrade, null,),
+              _createGradeInput(
+                'Operating System', true,
+                _updateOSTheoryGrade, _updateOSLabGrade,),
+              _createGradeInput(
+                'Theory of Computation', false,
+                _updateTOCGrade, null,),
+              _createGradeInput(
+                'Object Oriented Methodologies', true,
+                _updateOOMTheoryGrade, _updateOOMLabGrade,),
+              _createGradeInput(
+                'Microprocessors', true,
+                _updateMIPTheoryGrade, _updateMICLabGrade,),
+            ],),
+        ),
       ),
     );
   }
@@ -102,7 +107,6 @@ class _ITSemesterThreeState extends State<ITSemesterThree> {
       dbmsLab: _oomLab,
       pocTheory: _micTheory,
       pocLab: _micLab,);
-
 
     widget.updatePointerCallback(fp);
   }
