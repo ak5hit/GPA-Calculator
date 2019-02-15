@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ITSemesterThree.dart';
 import 'ITSemesterFour.dart';
 
 const branchNames = ['IT', 'ECE'];
@@ -19,12 +20,12 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedBranch = 0;
   int _selectedPointer = 0;
   int _selectedSemester = 1;
-  String finalPointer = '0.0';
+  String _finalPointer = '0.0';
   List<DropdownMenuItem<int>> _semestersDropDownItems;
 
   updatePointerCallback(String finalPointer) {
     setState(() {
-      this.finalPointer = finalPointer;
+      this._finalPointer = finalPointer;
     });
   }
 
@@ -36,17 +37,23 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Column mainBodyColumn = Column(
+      children: <Widget>[_buildChoices(), _buildSemesterDropDown()],);
+
+    switch (_selectedSemester) {
+      case 3:
+        mainBodyColumn.children.add(ITSemesterThree(updatePointerCallback));
+        break;
+      case 4:
+        mainBodyColumn.children.add(ITSemesterFour(updatePointerCallback));
+        break;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text(widget.title)),
       ),
-      body: Column(
-        children: <Widget>[
-          _buildChoices(),
-          _buildSemesterDropDown(),
-          ITSemesterFour(updatePointerCallback)
-        ],
-      ),
+      body: mainBodyColumn,
     );
   }
 
@@ -75,7 +82,7 @@ class _MainScreenState extends State<MainScreen> {
       ),
     );
 
-    var finalPointerWidget = Text('$finalPointer',
+    var finalPointerWidget = Text('$_finalPointer',
       style: TextStyle(
         color: Colors.black, fontSize: 28.0, fontWeight: FontWeight.w500,),);
 

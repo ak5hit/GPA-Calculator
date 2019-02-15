@@ -1,3 +1,4 @@
+// This same utility method is used for Semester three.
 String calculateSemFourGPA(
     {String mathTheory = '',
     String daaTheory = '',
