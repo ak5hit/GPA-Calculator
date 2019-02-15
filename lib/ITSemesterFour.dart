@@ -37,20 +37,32 @@ class _ITSemesterFourState extends State<ITSemesterFour> {
           child: ListView(
             shrinkWrap: false,
             children: <Widget>[
-              _createGradeInput(
-                'Mathematics - 3', false, _updateMathsGrade, null,),
-              _createGradeInput(
-                'Design and Analysis of Algorithms', true,
-                _updateDAATheoryGrade, _updateDAALabGrade,),
-              _createGradeInput(
-                'Principles of Programming Languages', false,
-                _updatePPLGrade, null,),
-              _createGradeInput(
-                'Database Management Systems', true,
-                _updateDBMSTheoryGrade, _updateDBMSLabGrade,),
-              _createGradeInput(
-                'Principles of Communication', true,
-                _updatePOCTheoryGrade, _updatePOCLabGrade,),
+              createGradeInput(
+                context,
+                'Mathematics - 3',
+                onChangeTheory: _updateMathsGrade,),
+              createGradeInput(
+                context,
+                'Design and Analysis of Algorithms',
+                isThereAnyLab: true,
+                onChangeTheory: _updateDAATheoryGrade,
+                onChangeLab: _updateDAALabGrade,),
+              createGradeInput(
+                context,
+                'Principles of Programming Languages',
+                onChangeTheory: _updatePPLGrade,),
+              createGradeInput(
+                context,
+                'Database Management Systems',
+                isThereAnyLab: true,
+                onChangeTheory: _updateDBMSTheoryGrade,
+                onChangeLab: _updateDBMSLabGrade,),
+              createGradeInput(
+                context,
+                'Principles of Communication',
+                isThereAnyLab: true,
+                onChangeTheory: _updatePOCTheoryGrade,
+                onChangeLab: _updatePOCLabGrade,),
             ],),
         ),
       ),
@@ -111,88 +123,5 @@ class _ITSemesterFourState extends State<ITSemesterFour> {
     print('Final Pointer: ' + fp);
 
     widget.updatePointerCallback(fp);
-  }
-
-  Widget _createGradeInput(String subject, bool isThereAnyLab,
-      ValueChanged<dynamic> onChangeTheory, ValueChanged<dynamic> onChangeLab) {
-    if (isThereAnyLab) {
-      // If there is lab
-      return Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text('$subject', style: TextStyle(fontSize: 18.0),),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _createInputFieldForRow(theoryString, onChangeTheory),
-              _createInputFieldForRow(labString, onChangeLab),
-            ],
-          ),
-        ],
-      );
-    } else {
-      // If its only theory subject
-      return Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text('$subject', style: TextStyle(fontSize: 18.0),),
-          ),
-          _createInputField(theoryString, onChangeTheory)
-        ],
-      );
-    }
-  }
-
-  Widget _createInputFieldForRow(String hint, ValueChanged<dynamic> onChanged) {
-    return Flexible(
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 12.0),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey[300], width: 1.0,),
-          borderRadius: BorderRadius.all(Radius.circular(2.0)),),
-        child: TextField(
-          inputFormatters: [LengthLimitingTextInputFormatter(2)],
-          textCapitalization: TextCapitalization.characters,
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintStyle: Theme
-                .of(context)
-                .textTheme
-                .caption,
-            hintText: '$hint',
-          ),
-          onChanged: onChanged,
-          cursorWidth: 1.0,
-          cursorColor: Colors.black,
-          textAlign: TextAlign.center,),
-      ),
-    );
-  }
-
-  Widget _createInputField(String hint, ValueChanged<dynamic> onChanged) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12.0),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey[300], width: 1.0,),
-        borderRadius: BorderRadius.all(Radius.circular(2.0)),),
-      child: TextField(
-        inputFormatters: [LengthLimitingTextInputFormatter(2)],
-        textCapitalization: TextCapitalization.characters,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintStyle: Theme
-              .of(context)
-              .textTheme
-              .caption,
-          hintText: '$hint',
-        ),
-        onChanged: onChanged,
-        cursorWidth: 1.0,
-        cursorColor: Colors.black,
-        textAlign: TextAlign.center,),
-    );
   }
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'MainScreen.dart';
 import 'Utils.dart';
 
 import 'WithoutOverScrollShadowBehaviour.dart';
@@ -37,41 +35,43 @@ class _ITSemesterFiveState extends State<ITSemesterFive> {
           child: ListView(
             shrinkWrap: false,
             children: <Widget>[
-              _createGradeInput(
+              createGradeInput(
+                context,
                 'Computer Networks',
-                true,
-                _updateCNETheoryGrade,
-                _updateCNELabGrade,
+                isThereAnyLab: true,
+                onChangeTheory: _updateCNETheoryGrade,
+                onChangeLab: _updateCNELabGrade,
               ),
-              _createGradeInput(
+              createGradeInput(
+                context,
                 'Software Engineering',
-                true,
-                _updateDAATheoryGrade,
-                _updateSOELabGrade,
+                isThereAnyLab: true,
+                onChangeTheory: _updateDAATheoryGrade,
+                onChangeLab: _updateSOELabGrade,
               ),
-              _createGradeInput(
+              createGradeInput(
+                context,
                 'Principles of Economics',
-                false,
-                _updatePOEGrade,
-                null,
+                onChangeTheory: _updatePOEGrade,
               ),
-              _createGradeInput(
+              createGradeInput(
+                context,
                 'Graphics and Visual Computing',
-                true,
-                _updateGVCTheoryGrade,
-                _updateGVCLabGrade,
+                isThereAnyLab: true,
+                onChangeTheory: _updateGVCTheoryGrade,
+                onChangeLab: _updateGVCLabGrade,
               ),
-              _createGradeInput(
+              createGradeInput(
+                context,
                 'Artificial Intelligence',
-                true,
-                _updateAITheoryGrade,
-                _updateAILabGrade,
+                isThereAnyLab: true,
+                onChangeTheory: _updateAITheoryGrade,
+                onChangeLab: _updateAILabGrade,
               ),
-              _createGradeInput(
+              createGradeInput(
+                context,
                 'Mini Project',
-                false,
-                _updateMiniProjectGrade,
-                null,
+                onChangeTheory: _updateMiniProjectGrade,
               )
             ],
           ),
@@ -144,98 +144,5 @@ class _ITSemesterFiveState extends State<ITSemesterFive> {
         miniProject: _miniProject);
 
     widget.updatePointerCallback(fp);
-  }
-
-  Widget _createGradeInput(String subject, bool isThereAnyLab,
-      ValueChanged<dynamic> onChangeTheory, ValueChanged<dynamic> onChangeLab) {
-    if (isThereAnyLab) {
-      // If there is lab
-      return Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text(
-              '$subject',
-              style: TextStyle(fontSize: 18.0),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _createInputFieldForRow(theoryString, onChangeTheory),
-              _createInputFieldForRow(labString, onChangeLab),
-            ],
-          ),
-        ],
-      );
-    } else {
-      // If its only theory subject
-      return Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text(
-              '$subject',
-              style: TextStyle(fontSize: 18.0),
-            ),
-          ),
-          _createInputField(theoryString, onChangeTheory)
-        ],
-      );
-    }
-  }
-
-  Widget _createInputFieldForRow(String hint, ValueChanged<dynamic> onChanged) {
-    return Flexible(
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 12.0),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.grey[300],
-            width: 1.0,
-          ),
-          borderRadius: BorderRadius.all(Radius.circular(2.0)),
-        ),
-        child: TextField(
-          inputFormatters: [LengthLimitingTextInputFormatter(2)],
-          textCapitalization: TextCapitalization.characters,
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintStyle: Theme.of(context).textTheme.caption,
-            hintText: '$hint',
-          ),
-          onChanged: onChanged,
-          cursorWidth: 1.0,
-          cursorColor: Colors.black,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
-
-  Widget _createInputField(String hint, ValueChanged<dynamic> onChanged) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12.0),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.grey[300],
-          width: 1.0,
-        ),
-        borderRadius: BorderRadius.all(Radius.circular(2.0)),
-      ),
-      child: TextField(
-        inputFormatters: [LengthLimitingTextInputFormatter(2)],
-        textCapitalization: TextCapitalization.characters,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintStyle: Theme.of(context).textTheme.caption,
-          hintText: '$hint',
-        ),
-        onChanged: onChanged,
-        cursorWidth: 1.0,
-        cursorColor: Colors.black,
-        textAlign: TextAlign.center,
-      ),
-    );
   }
 }

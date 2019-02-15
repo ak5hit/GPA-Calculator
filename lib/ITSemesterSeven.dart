@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'MainScreen.dart';
 import 'Utils.dart';
 
 import 'WithoutOverScrollShadowBehaviour.dart';
@@ -33,26 +31,32 @@ class _ITSemesterSevenState extends State<ITSemesterSeven> {
           child: ListView(
             shrinkWrap: false,
             children: <Widget>[
-              _createGradeInput(
+              createGradeInput(
+                context,
                 'System Modeling and Simulating',
                 isThereAnyLab: true,
                 onChangeTheory: _updateSIMTheoryGrade,
                 onChangeLab: _updateSIMLabGrade,
               ),
-              _createGradeInput(
+              createGradeInput(
+                context,
                 'Organizational Behaviour',
                 onChangeTheory: _updateORBTheoryGrade,
               ),
-              _createGradeInput(
+              createGradeInput(
+                context,
                 'Elective-1',
                 onChangeTheory: _updateElective1Grade,
               ),
-              _createGradeInput(
+              createGradeInput(
+                context,
                 'Elective-2',
                 onChangeTheory: _updateElective2Grade,
               ),
-              _createGradeInput(
+              createGradeInput(
+                context,
                 'Mini Project',
+                hintString: 'Project Grade',
                 onChangeTheory: _updateMiniProjectGrade,
               )
             ],
@@ -102,102 +106,5 @@ class _ITSemesterSevenState extends State<ITSemesterSeven> {
         miniProject: _miniProject);
 
     widget.updatePointerCallback(fp);
-  }
-
-  Widget _createGradeInput(String subject,
-      {bool isThereAnyLab = false,
-      // ignore: avoid_init_to_null
-      ValueChanged<dynamic> onChangeTheory = null,
-      // ignore: avoid_init_to_null
-      ValueChanged<dynamic> onChangeLab = null}) {
-    if (isThereAnyLab) {
-      // If there is lab
-      return Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text(
-              '$subject',
-              style: TextStyle(fontSize: 18.0),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _createInputFieldForRow(theoryString, onChangeTheory),
-              _createInputFieldForRow(labString, onChangeLab),
-            ],
-          ),
-        ],
-      );
-    } else {
-      // If its only theory subject
-      return Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text(
-              '$subject',
-              style: TextStyle(fontSize: 18.0),
-            ),
-          ),
-          _createInputField(theoryString, onChangeTheory)
-        ],
-      );
-    }
-  }
-
-  Widget _createInputFieldForRow(String hint, ValueChanged<dynamic> onChanged) {
-    return Flexible(
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 12.0),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.grey[300],
-            width: 1.0,
-          ),
-          borderRadius: BorderRadius.all(Radius.circular(2.0)),
-        ),
-        child: TextField(
-          inputFormatters: [LengthLimitingTextInputFormatter(2)],
-          textCapitalization: TextCapitalization.characters,
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintStyle: Theme.of(context).textTheme.caption,
-            hintText: '$hint',
-          ),
-          onChanged: onChanged,
-          cursorWidth: 1.0,
-          cursorColor: Colors.black,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
-
-  Widget _createInputField(String hint, ValueChanged<dynamic> onChanged) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12.0),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.grey[300],
-          width: 1.0,
-        ),
-        borderRadius: BorderRadius.all(Radius.circular(2.0)),
-      ),
-      child: TextField(
-        inputFormatters: [LengthLimitingTextInputFormatter(2)],
-        textCapitalization: TextCapitalization.characters,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintStyle: Theme.of(context).textTheme.caption,
-          hintText: '$hint',
-        ),
-        onChanged: onChanged,
-        cursorWidth: 1.0,
-        cursorColor: Colors.black,
-        textAlign: TextAlign.center,
-      ),
-    );
   }
 }

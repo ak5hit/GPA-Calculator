@@ -37,20 +37,32 @@ class _ITSemesterThreeState extends State<ITSemesterThree> {
           child: ListView(
             shrinkWrap: false,
             children: <Widget>[
-              _createGradeInput(
-                'Mathematics - 2', false, _updateMathsGrade, null,),
-              _createGradeInput(
-                'Operating System', true,
-                _updateOSTheoryGrade, _updateOSLabGrade,),
-              _createGradeInput(
-                'Theory of Computation', false,
-                _updateTOCGrade, null,),
-              _createGradeInput(
-                'Object Oriented Methodologies', true,
-                _updateOOMTheoryGrade, _updateOOMLabGrade,),
-              _createGradeInput(
-                'Microprocessors', true,
-                _updateMIPTheoryGrade, _updateMICLabGrade,),
+              createGradeInput(
+                context,
+                'Mathematics - 2',
+                onChangeTheory: _updateMathsGrade,),
+              createGradeInput(
+                context,
+                'Operating System',
+                isThereAnyLab: true,
+                onChangeTheory: _updateOSTheoryGrade,
+                onChangeLab: _updateOSLabGrade,),
+              createGradeInput(
+                context,
+                'Theory of Computation',
+                onChangeTheory: _updateTOCGrade,),
+              createGradeInput(
+                context,
+                'Object Oriented Methodologies',
+                isThereAnyLab: true,
+                onChangeTheory: _updateOOMTheoryGrade,
+                onChangeLab: _updateOOMLabGrade,),
+              createGradeInput(
+                context,
+                'Microprocessors',
+                isThereAnyLab: true,
+                onChangeTheory: _updateMIPTheoryGrade,
+                onChangeLab: _updateMICLabGrade,),
             ],),
         ),
       ),
@@ -109,88 +121,5 @@ class _ITSemesterThreeState extends State<ITSemesterThree> {
       pocLab: _micLab,);
 
     widget.updatePointerCallback(fp);
-  }
-
-  Widget _createGradeInput(String subject, bool isThereAnyLab,
-      ValueChanged<dynamic> onChangeTheory, ValueChanged<dynamic> onChangeLab) {
-    if (isThereAnyLab) {
-      // If there is lab
-      return Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text('$subject', style: TextStyle(fontSize: 18.0),),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _createInputFieldForRow(theoryString, onChangeTheory),
-              _createInputFieldForRow(labString, onChangeLab),
-            ],
-          ),
-        ],
-      );
-    } else {
-      // If its only theory subject
-      return Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text('$subject', style: TextStyle(fontSize: 18.0),),
-          ),
-          _createInputField(theoryString, onChangeTheory)
-        ],
-      );
-    }
-  }
-
-  Widget _createInputFieldForRow(String hint, ValueChanged<dynamic> onChanged) {
-    return Flexible(
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 12.0),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey[300], width: 1.0,),
-          borderRadius: BorderRadius.all(Radius.circular(2.0)),),
-        child: TextField(
-          inputFormatters: [LengthLimitingTextInputFormatter(2)],
-          textCapitalization: TextCapitalization.characters,
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintStyle: Theme
-                .of(context)
-                .textTheme
-                .caption,
-            hintText: '$hint',
-          ),
-          onChanged: onChanged,
-          cursorWidth: 1.0,
-          cursorColor: Colors.black,
-          textAlign: TextAlign.center,),
-      ),
-    );
-  }
-
-  Widget _createInputField(String hint, ValueChanged<dynamic> onChanged) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12.0),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey[300], width: 1.0,),
-        borderRadius: BorderRadius.all(Radius.circular(2.0)),),
-      child: TextField(
-        inputFormatters: [LengthLimitingTextInputFormatter(2)],
-        textCapitalization: TextCapitalization.characters,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintStyle: Theme
-              .of(context)
-              .textTheme
-              .caption,
-          hintText: '$hint',
-        ),
-        onChanged: onChanged,
-        cursorWidth: 1.0,
-        cursorColor: Colors.black,
-        textAlign: TextAlign.center,),
-    );
   }
 }

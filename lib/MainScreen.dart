@@ -4,11 +4,9 @@ import 'ITSemesterFour.dart';
 import 'ITSemesterFive.dart';
 import 'ITSemesterSix.dart';
 import 'ITSemesterSeven.dart';
+import 'ITSemesterEight.dart';
+import 'Utils.dart';
 
-const branchNames = ['IT', 'ECE'];
-const pointer = ['GPA', 'CGPA'];
-const theoryString = 'Theory Grade';
-const labString = 'Lab Grade';
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key key, this.title}) : super(key: key);
@@ -58,6 +56,9 @@ class _MainScreenState extends State<MainScreen> {
         break;
       case 7:
         mainBodyColumn.children.add(ITSemesterSeven(updatePointerCallback));
+        break;
+      case 8:
+        mainBodyColumn.children.add(ITSemesterEight(updatePointerCallback));
         break;
     }
 
