@@ -193,7 +193,7 @@ double pointerForGrade(String grade) {
   }
 }
 
-Widget createGradeInput(BuildContext context, String subject,
+Widget createGradeInput(BuildContext context, String courseName,
     {bool isThereAnyLab = false,
       // ignore: avoid_init_to_null
       ValueChanged<dynamic> onChangeTheory = null,
@@ -207,7 +207,7 @@ Widget createGradeInput(BuildContext context, String subject,
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Text(
-            '$subject',
+            '$courseName',
             style: TextStyle(fontSize: 18.0),
           ),
         ),
@@ -227,7 +227,7 @@ Widget createGradeInput(BuildContext context, String subject,
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Text(
-            '$subject',
+            '$courseName',
             style: TextStyle(fontSize: 18.0),
           ),
         ),

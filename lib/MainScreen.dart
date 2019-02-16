@@ -83,13 +83,10 @@ class _MainScreenState extends State<MainScreen> {
             value: _selectedSemester,
             items: _semestersDropDownItems,
             onChanged: _handleSemesterSelection,
-            style: Theme
-                .of(context)
-                .textTheme
-                .title
-                .copyWith(
-                fontWeight: FontWeight.w300,
-                fontSize: 24.0),
+            style: TextStyle(
+              fontWeight: FontWeight.w300,
+              color: Colors.black,
+              fontSize: 18.0,),
           ),
         )),
       ),
@@ -97,12 +94,16 @@ class _MainScreenState extends State<MainScreen> {
 
     var finalPointerWidget = Text('$_finalPointer',
       style: TextStyle(
-        color: Colors.black, fontSize: 28.0, fontWeight: FontWeight.w500,),);
+        fontSize: 32.0,
+        color: Colors.deepPurpleAccent,
+        fontWeight: FontWeight.w500,),);
 
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 8.0),
+      margin: EdgeInsets.only(top: 8.0, left: 4.0, right: 4.0),
+      padding: EdgeInsets.symmetric(vertical: 2.0),
       decoration: BoxDecoration(
         color: Colors.grey[50],
+        borderRadius: BorderRadius.circular(50.0),
         border: Border.all(
           color: Colors.grey[400],
           width: 1.0,
