@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'ITSemesterThree.dart';
-import 'ITSemesterFour.dart';
-import 'ITSemesterFive.dart';
-import 'ITSemesterSix.dart';
-import 'ITSemesterSeven.dart';
-import 'ITSemesterEight.dart';
+import 'package:gpa_calculator/IT/ITSemesterOne.dart';
+import 'package:gpa_calculator/IT/ITSemesterTwo.dart';
+import 'package:gpa_calculator/IT/ITSemesterThree.dart';
+import 'package:gpa_calculator/IT/ITSemesterFour.dart';
+import 'package:gpa_calculator/IT/ITSemesterFive.dart';
+import 'package:gpa_calculator/IT/ITSemesterSix.dart';
+import 'package:gpa_calculator/IT/ITSemesterSeven.dart';
+import 'package:gpa_calculator/IT/ITSemesterEight.dart';
+import 'CGPAScreen.dart';
 import 'Utils.dart';
 
 
@@ -41,25 +44,36 @@ class _MainScreenState extends State<MainScreen> {
     Column mainBodyColumn = Column(
       children: <Widget>[_buildChoices(), _buildSemesterDropDown()],);
 
-    switch (_selectedSemester) {
-      case 3:
-        mainBodyColumn.children.add(ITSemesterThree(updatePointerCallback));
-        break;
-      case 4:
-        mainBodyColumn.children.add(ITSemesterFour(updatePointerCallback));
-        break;
-      case 5:
-        mainBodyColumn.children.add(ITSemesterFive(updatePointerCallback));
-        break;
-      case 6:
-        mainBodyColumn.children.add(ITSemesterSix(updatePointerCallback));
-        break;
-      case 7:
-        mainBodyColumn.children.add(ITSemesterSeven(updatePointerCallback));
-        break;
-      case 8:
-        mainBodyColumn.children.add(ITSemesterEight(updatePointerCallback));
-        break;
+    if (_selectedPointer == 0) {
+      switch (_selectedSemester) {
+        case 1:
+          mainBodyColumn.children.add(ITSemesterOne(updatePointerCallback));
+          break;
+        case 2:
+          mainBodyColumn.children.add(ITSemesterTwo(updatePointerCallback));
+          break;
+        case 3:
+          mainBodyColumn.children.add(ITSemesterThree(updatePointerCallback));
+          break;
+        case 4:
+          mainBodyColumn.children.add(ITSemesterFour(updatePointerCallback));
+          break;
+        case 5:
+          mainBodyColumn.children.add(ITSemesterFive(updatePointerCallback));
+          break;
+        case 6:
+          mainBodyColumn.children.add(ITSemesterSix(updatePointerCallback));
+          break;
+        case 7:
+          mainBodyColumn.children.add(ITSemesterSeven(updatePointerCallback));
+          break;
+        case 8:
+          mainBodyColumn.children.add(ITSemesterEight(updatePointerCallback));
+          break;
+      }
+    } else {
+      mainBodyColumn.children.add(
+          CGPAScreen(_selectedSemester, updatePointerCallback));
     }
 
     return Scaffold(
@@ -71,13 +85,8 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Widget _buildSemesterDropDown() {
-    var dropDown = Container(
-      child: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: Colors.grey[50],
-        ),
-        child: DropdownButtonHideUnderline(
-            child: ButtonTheme(
+    var dropDown = DropdownButtonHideUnderline(
+        child: ButtonTheme(
           alignedDropdown: true,
           child: DropdownButton(
             value: _selectedSemester,
@@ -88,22 +97,19 @@ class _MainScreenState extends State<MainScreen> {
               color: Colors.black,
               fontSize: 18.0,),
           ),
-        )),
-      ),
-    );
+        ));
 
     var finalPointerWidget = Text('$_finalPointer',
       style: TextStyle(
         fontSize: 32.0,
-        color: Colors.deepPurpleAccent,
+        color: Colors.deepPurple,
         fontWeight: FontWeight.w500,),);
 
     return Container(
       margin: EdgeInsets.only(top: 8.0, left: 4.0, right: 4.0),
       padding: EdgeInsets.symmetric(vertical: 2.0),
       decoration: BoxDecoration(
-        color: Colors.grey[50],
-        borderRadius: BorderRadius.circular(50.0),
+        borderRadius: BorderRadius.circular(5.0),
         border: Border.all(
           color: Colors.grey[400],
           width: 1.0,

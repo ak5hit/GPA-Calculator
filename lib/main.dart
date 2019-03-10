@@ -10,7 +10,8 @@ class GPACalculatorApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primaryColor: Colors.deepPurple,
+        accentColor: Colors.deepPurpleAccent,
       ),
       home: MainScreen(
         title: 'GPA Calculator',

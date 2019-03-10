@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'MainScreen.dart';
-import 'Utils.dart';
-
-import 'WithoutOverScrollShadowBehaviour.dart';
+import 'package:gpa_calculator/Utils.dart';
+import 'package:gpa_calculator/WithoutOverScrollShadowBehaviour.dart';
 
 // ignore: must_be_immutable
 class ITSemesterFour extends StatefulWidget {
