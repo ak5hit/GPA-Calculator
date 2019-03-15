@@ -8,6 +8,7 @@ import 'package:gpa_calculator/IT/ITSemesterSix.dart';
 import 'package:gpa_calculator/IT/ITSemesterSeven.dart';
 import 'package:gpa_calculator/IT/ITSemesterEight.dart';
 import 'package:gpa_calculator/ECE/ECESemesterThree.dart';
+import 'package:gpa_calculator/ECE/ECESemesterFour.dart';
 import 'CGPAScreen.dart';
 import 'Utils.dart';
 
@@ -84,6 +85,10 @@ class _MainScreenState extends State<MainScreen> {
           case 3:
             mainBodyColumn.children.add(
                 ECESemesterThree(updatePointerCallback));
+            break;
+          case 4:
+            mainBodyColumn.children.add(
+                ECESemesterFour(updatePointerCallback));
             break;
         }
       }

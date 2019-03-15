@@ -293,6 +293,46 @@ String calculateECESemThreeGPA({String aecTheory = '',
   return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
 }
 
+String calculateECESemFourGPA({String dtsTheory = '',
+  String emiTheory = '',
+  String emiLab = '',
+  String mipTheory = '',
+  String mipLab = '',
+  String megTheory = '',
+  String megLab = '',
+  String ictTheory = '',
+  String mmTheory = '',}) {
+  double mT = pointerForGrade(formatInputGrade(dtsTheory));
+  double dT = pointerForGrade(formatInputGrade(emiTheory));
+  double dL = pointerForGrade(formatInputGrade(emiLab));
+  double dbT = pointerForGrade(formatInputGrade(mipTheory));
+  double dbL = pointerForGrade(formatInputGrade(mipLab));
+  double poT = pointerForGrade(formatInputGrade(megTheory));
+  double poL = pointerForGrade(formatInputGrade(megLab));
+  double pT = pointerForGrade(formatInputGrade(ictTheory));
+  double mmT = pointerForGrade(formatInputGrade(mmTheory));
+
+  double fp = ((mT * 3 +
+      dT * 3 +
+      dL * 2 +
+      dbT * 3 +
+      dbL * 2 +
+      poT * 3 +
+      poL * 2 +
+      pT * 3 +
+      mmT * 3) /
+      (3 * (mT == 0 ? 0 : 1) +
+          3 * (dT == 0 ? 0 : 1) +
+          2 * (dL == 0 ? 0 : 1) +
+          3 * (dbT == 0 ? 0 : 1) +
+          2 * (dbL == 0 ? 0 : 1) +
+          3 * (poT == 0 ? 0 : 1) +
+          2 * (poL == 0 ? 0 : 1) +
+          3 * (pT == 0 ? 0 : 1) +
+          3 * (mmT == 0 ? 0 : 1)));
+  return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
+}
+
 
 
 String calculateCGPAFor(List<StringBuffer> gpas, int semestersDone) {
