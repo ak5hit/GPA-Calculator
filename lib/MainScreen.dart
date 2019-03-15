@@ -7,6 +7,7 @@ import 'package:gpa_calculator/IT/ITSemesterFive.dart';
 import 'package:gpa_calculator/IT/ITSemesterSix.dart';
 import 'package:gpa_calculator/IT/ITSemesterSeven.dart';
 import 'package:gpa_calculator/IT/ITSemesterEight.dart';
+import 'package:gpa_calculator/ECE/ECESemesterThree.dart';
 import 'CGPAScreen.dart';
 import 'Utils.dart';
 
@@ -45,31 +46,46 @@ class _MainScreenState extends State<MainScreen> {
       children: <Widget>[_buildChoices(), _buildSemesterDropDown()],);
 
     if (_selectedPointer == 0) {
-      switch (_selectedSemester) {
-        case 1:
-          mainBodyColumn.children.add(ITSemesterOne(updatePointerCallback));
-          break;
-        case 2:
-          mainBodyColumn.children.add(ITSemesterTwo(updatePointerCallback));
-          break;
-        case 3:
-          mainBodyColumn.children.add(ITSemesterThree(updatePointerCallback));
-          break;
-        case 4:
-          mainBodyColumn.children.add(ITSemesterFour(updatePointerCallback));
-          break;
-        case 5:
-          mainBodyColumn.children.add(ITSemesterFive(updatePointerCallback));
-          break;
-        case 6:
-          mainBodyColumn.children.add(ITSemesterSix(updatePointerCallback));
-          break;
-        case 7:
-          mainBodyColumn.children.add(ITSemesterSeven(updatePointerCallback));
-          break;
-        case 8:
-          mainBodyColumn.children.add(ITSemesterEight(updatePointerCallback));
-          break;
+      if (_selectedBranch == 0) {
+        switch (_selectedSemester) {
+          case 1:
+            mainBodyColumn.children.add(ITSemesterOne(updatePointerCallback));
+            break;
+          case 2:
+            mainBodyColumn.children.add(ITSemesterTwo(updatePointerCallback));
+            break;
+          case 3:
+            mainBodyColumn.children.add(ITSemesterThree(updatePointerCallback));
+            break;
+          case 4:
+            mainBodyColumn.children.add(ITSemesterFour(updatePointerCallback));
+            break;
+          case 5:
+            mainBodyColumn.children.add(ITSemesterFive(updatePointerCallback));
+            break;
+          case 6:
+            mainBodyColumn.children.add(ITSemesterSix(updatePointerCallback));
+            break;
+          case 7:
+            mainBodyColumn.children.add(ITSemesterSeven(updatePointerCallback));
+            break;
+          case 8:
+            mainBodyColumn.children.add(ITSemesterEight(updatePointerCallback));
+            break;
+        }
+      } else if (_selectedBranch == 1) {
+        switch (_selectedSemester) {
+          case 1:
+            mainBodyColumn.children.add(ITSemesterOne(updatePointerCallback));
+            break;
+          case 2:
+            mainBodyColumn.children.add(ITSemesterTwo(updatePointerCallback));
+            break;
+          case 3:
+            mainBodyColumn.children.add(
+                ECESemesterThree(updatePointerCallback));
+            break;
+        }
       }
     } else {
       mainBodyColumn.children.add(

@@ -6,7 +6,7 @@ const pointer = ['GPA', 'CGPA'];
 const theoryString = 'Theory Grade';
 const labString = 'Lab Grade';
 
-String calculateSemOneGPA({
+String calculateITSemOneGPA({
   String edcTheory = '',
   String edcLab = '',
   String itpTheory = '',
@@ -51,7 +51,7 @@ String calculateSemOneGPA({
   return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
 }
 
-String calculateSemTwoGPA({String pbsTheory = '',
+String calculateITSemTwoGPA({String pbsTheory = '',
   String dmaTheory = '',
   String coaTheory = '',
   String dstTheory = '',
@@ -88,7 +88,7 @@ String calculateSemTwoGPA({String pbsTheory = '',
 }
 
 // This same utility method is used for Semester three.
-String calculateSemFourGPA({String mathTheory = '',
+String calculateITSemFourGPA({String mathTheory = '',
   String daaTheory = '',
   String daaLab = '',
   String pplTheory = '',
@@ -124,7 +124,7 @@ String calculateSemFourGPA({String mathTheory = '',
   return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
 }
 
-String calculateSemFiveGPA({String cneTheory = '',
+String calculateITSemFiveGPA({String cneTheory = '',
   String cneLab = '',
   String soeTheory = '',
   String soeLab = '',
@@ -168,7 +168,7 @@ String calculateSemFiveGPA({String cneTheory = '',
   return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
 }
 
-String calculateSemSixGPA({String cdoTheory = '',
+String calculateITSemSixGPA({String cdoTheory = '',
   String cdoLab = '',
   String ivpTheory = '',
   String ivpLab = '',
@@ -208,7 +208,7 @@ String calculateSemSixGPA({String cdoTheory = '',
   return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
 }
 
-String calculateSemSevenGPA({String simTheory = '',
+String calculateITSemSevenGPA({String simTheory = '',
   String simLab = '',
   String orbTheory = '',
   String elective1 = '',
@@ -236,7 +236,7 @@ String calculateSemSevenGPA({String simTheory = '',
   return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
 }
 
-String calculateSemEightGPA({
+String calculateITSemEightGPA({
   String posLab = '',
   String elective = '',
   String miniProject = ''}) {
@@ -252,6 +252,48 @@ String calculateSemEightGPA({
           5 * (mP == 0 ? 0 : 1)));
   return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
 }
+
+String calculateECESemThreeGPA({String aecTheory = '',
+  String aecLab = '',
+  String osTheory = '',
+  String osLab = '',
+  String efwTheory = '',
+  String acmTheory = '',
+  String acmLab = '',
+  String beeTheory = '',
+  String beeLab = ''}) {
+  double mT = pointerForGrade(formatInputGrade(aecTheory));
+  double mL = pointerForGrade(formatInputGrade(aecLab));
+  double dT = pointerForGrade(formatInputGrade(osTheory));
+  double dL = pointerForGrade(formatInputGrade(osLab));
+  double pT = pointerForGrade(formatInputGrade(efwTheory));
+  double dbT = pointerForGrade(formatInputGrade(acmTheory));
+  double dbL = pointerForGrade(formatInputGrade(acmLab));
+  double poT = pointerForGrade(formatInputGrade(beeTheory));
+  double poL = pointerForGrade(formatInputGrade(beeLab));
+
+  double fp = ((mT * 3 +
+      mL * 2 +
+      dT * 3 +
+      dL * 2 +
+      pT * 3 +
+      dbT * 3 +
+      dbL * 2 +
+      poT * 3 +
+      poL * 2) /
+      (3 * (mT == 0 ? 0 : 1) +
+          2 * (mL == 0 ? 0 : 1) +
+          3 * (dT == 0 ? 0 : 1) +
+          2 * (dL == 0 ? 0 : 1) +
+          3 * (pT == 0 ? 0 : 1) +
+          3 * (dbT == 0 ? 0 : 1) +
+          2 * (dbL == 0 ? 0 : 1) +
+          3 * (poT == 0 ? 0 : 1) +
+          2 * (poL == 0 ? 0 : 1)));
+  return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
+}
+
+
 
 String calculateCGPAFor(List<StringBuffer> gpas, int semestersDone) {
   double num = 0,

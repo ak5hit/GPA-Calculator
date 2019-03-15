@@ -66,7 +66,7 @@ class _ITSemesterEightState extends State<ITSemesterEight> {
   }
 
   void _updateFinalPointer() {
-    String fp = calculateSemEightGPA(
+    String fp = calculateITSemEightGPA(
         posLab: _posTheory, elective: _elective, miniProject: _miniProject);
 
     widget.updatePointerCallback(fp);

@@ -136,7 +136,7 @@ class _ITSemesterOneState extends State<ITSemesterOne> {
   }
 
   void _updateFinalPointer() {
-    String fp = calculateSemOneGPA(
+    String fp = calculateITSemOneGPA(
       edcTheory: _edcTheory,
       edcLab: _edcLab,
       itpTheory: _itpTheory,

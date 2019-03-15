@@ -114,7 +114,7 @@ class _ITSemesterTwoState extends State<ITSemesterTwo> {
   }
 
   void _updateFinalPointer() {
-    String fp = calculateSemTwoGPA(
+    String fp = calculateITSemTwoGPA(
       pbsTheory: _pbsTheory,
       dmaTheory: _dmaTheory,
       coaTheory: _coaTheory,

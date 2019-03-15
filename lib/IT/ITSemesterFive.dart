@@ -130,7 +130,7 @@ class _ITSemesterFiveState extends State<ITSemesterFive> {
   }
 
   void _updateFinalPointer() {
-    String fp = calculateSemFiveGPA(
+    String fp = calculateITSemFiveGPA(
         cneTheory: _cneTheory,
         cneLab: _cneLab,
         soeTheory: _soeTheory,

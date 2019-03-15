@@ -107,7 +107,7 @@ class _ITSemesterFourState extends State<ITSemesterFour> {
   }
 
   void _updateFinalPointer() {
-    String fp = calculateSemFourGPA(
+    String fp = calculateITSemFourGPA(
       mathTheory: _mathTheory,
       daaTheory: _daaTheory,
       daaLab: _daaLab,

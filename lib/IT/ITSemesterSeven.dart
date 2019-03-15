@@ -96,7 +96,7 @@ class _ITSemesterSevenState extends State<ITSemesterSeven> {
   }
 
   void _updateFinalPointer() {
-    String fp = calculateSemSevenGPA(
+    String fp = calculateITSemSevenGPA(
         simTheory: _simTheory,
         simLab: _simLab,
         orbTheory: _orbTheory,

@@ -123,7 +123,7 @@ class _ITSemesterSixState extends State<ITSemesterSix> {
   }
 
   void _updateFinalPointer() {
-    String fp = calculateSemSixGPA(
+    String fp = calculateITSemSixGPA(
         cdoTheory: _cdoTheory,
         cdoLab: _cdoLab,
         ivpTheory: _ivpTheory,
