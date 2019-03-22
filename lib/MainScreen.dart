@@ -9,9 +9,12 @@ import 'package:gpa_calculator/IT/ITSemesterSeven.dart';
 import 'package:gpa_calculator/IT/ITSemesterEight.dart';
 import 'package:gpa_calculator/ECE/ECESemesterThree.dart';
 import 'package:gpa_calculator/ECE/ECESemesterFour.dart';
+import 'package:gpa_calculator/ECE/ECESemesterFive.dart';
+import 'package:gpa_calculator/ECE/ECESemesterSix.dart';
+import 'package:gpa_calculator/ECE/ECESemesterSeven.dart';
+import 'package:gpa_calculator/ECE/ECESemesterEight.dart';
 import 'CGPAScreen.dart';
 import 'Utils.dart';
-
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key key, this.title}) : super(key: key);
@@ -44,7 +47,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     Column mainBodyColumn = Column(
-      children: <Widget>[_buildChoices(), _buildSemesterDropDown()],);
+      children: <Widget>[_buildChoices(), _buildSemesterDropDown()],
+    );
 
     if (_selectedPointer == 0) {
       if (_selectedBranch == 0) {
@@ -83,18 +87,29 @@ class _MainScreenState extends State<MainScreen> {
             mainBodyColumn.children.add(ITSemesterTwo(updatePointerCallback));
             break;
           case 3:
-            mainBodyColumn.children.add(
-                ECESemesterThree(updatePointerCallback));
+            mainBodyColumn.children
+                .add(ECESemesterThree(updatePointerCallback));
             break;
           case 4:
-            mainBodyColumn.children.add(
-                ECESemesterFour(updatePointerCallback));
+            mainBodyColumn.children.add(ECESemesterFour(updatePointerCallback));
+            break;
+          case 5:
+            mainBodyColumn.children.add(ECESemesterFive(updatePointerCallback));
+            break;
+          case 6:
+            mainBodyColumn.children.add(ECESemesterSix(updatePointerCallback));
+            break;
+          case 7:
+            mainBodyColumn.children.add(ECESemesterSeven(updatePointerCallback));
+            break;
+          case 8:
+            mainBodyColumn.children.add(ECESemesterEight(updatePointerCallback));
             break;
         }
       }
     } else {
-      mainBodyColumn.children.add(
-          CGPAScreen(_selectedSemester, updatePointerCallback));
+      mainBodyColumn.children
+          .add(CGPAScreen(_selectedSemester, updatePointerCallback));
     }
 
     return Scaffold(
@@ -108,23 +123,27 @@ class _MainScreenState extends State<MainScreen> {
   Widget _buildSemesterDropDown() {
     var dropDown = DropdownButtonHideUnderline(
         child: ButtonTheme(
-          alignedDropdown: true,
-          child: DropdownButton(
-            value: _selectedSemester,
-            items: _semestersDropDownItems,
-            onChanged: _handleSemesterSelection,
-            style: TextStyle(
-              fontWeight: FontWeight.w300,
-              color: Colors.black,
-              fontSize: 18.0,),
-          ),
-        ));
+      alignedDropdown: true,
+      child: DropdownButton(
+        value: _selectedSemester,
+        items: _semestersDropDownItems,
+        onChanged: _handleSemesterSelection,
+        style: TextStyle(
+          fontWeight: FontWeight.w300,
+          color: Colors.black,
+          fontSize: 18.0,
+        ),
+      ),
+    ));
 
-    var finalPointerWidget = Text('$_finalPointer',
+    var finalPointerWidget = Text(
+      '$_finalPointer',
       style: TextStyle(
         fontSize: 32.0,
         color: Colors.deepPurple,
-        fontWeight: FontWeight.w500,),);
+        fontWeight: FontWeight.w500,
+      ),
+    );
 
     return Container(
       margin: EdgeInsets.only(top: 8.0, left: 4.0, right: 4.0),
@@ -138,7 +157,10 @@ class _MainScreenState extends State<MainScreen> {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[dropDown, finalPointerWidget,],
+        children: <Widget>[
+          dropDown,
+          finalPointerWidget,
+        ],
       ),
     );
   }

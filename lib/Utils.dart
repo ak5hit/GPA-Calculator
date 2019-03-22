@@ -213,12 +213,14 @@ String calculateITSemSevenGPA({String simTheory = '',
   String orbTheory = '',
   String elective1 = '',
   String elective2 = '',
+  String elective3 = '',
   String miniProject = ''}) {
   double sT = pointerForGrade(formatInputGrade(simTheory));
   double sL = pointerForGrade(formatInputGrade(simLab));
   double oT = pointerForGrade(formatInputGrade(orbTheory));
   double e1 = pointerForGrade(formatInputGrade(elective1));
   double e2 = pointerForGrade(formatInputGrade(elective2));
+  double e3 = pointerForGrade(formatInputGrade(elective3));
   double mP = pointerForGrade(formatInputGrade(miniProject));
 
   double fp = ((sT * 3 +
@@ -226,12 +228,14 @@ String calculateITSemSevenGPA({String simTheory = '',
       oT * 3 +
       e1 * 3 +
       e2 * 3 +
+      e3 * 3 +
       mP * 5) /
       (3 * (sT == 0 ? 0 : 1) +
           2 * (sL == 0 ? 0 : 1) +
           2 * (oT == 0 ? 0 : 1) +
           3 * (e1 == 0 ? 0 : 1) +
           3 * (e2 == 0 ? 0 : 1) +
+          3 * (e3 == 0 ? 0 : 1) +
           5 * (mP == 0 ? 0 : 1)));
   return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
 }
@@ -322,6 +326,7 @@ String calculateECESemFourGPA({String dtsTheory = '',
       pT * 3 +
       mmT * 3) /
       (3 * (mT == 0 ? 0 : 1) +
+
           3 * (dT == 0 ? 0 : 1) +
           2 * (dL == 0 ? 0 : 1) +
           3 * (dbT == 0 ? 0 : 1) +
@@ -333,6 +338,15 @@ String calculateECESemFourGPA({String dtsTheory = '',
   return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
 }
 
+String calculateECESemEightGPA({
+  String miniProject = ''}) {
+  double mP = pointerForGrade(formatInputGrade(miniProject));
+
+  double fp = ((
+      mP * 20) /
+      (20 * (mP == 0 ? 0 : 1)));
+  return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
+}
 
 
 String calculateCGPAFor(List<StringBuffer> gpas, int semestersDone) {
