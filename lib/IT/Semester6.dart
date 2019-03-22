@@ -3,19 +3,22 @@ import 'package:gpa_calculator/Utils.dart';
 import 'package:gpa_calculator/WithoutOverScrollShadowBehaviour.dart';
 
 // ignore: must_be_immutable
-class ITSemesterSeven extends StatefulWidget {
+class Semester6 extends StatefulWidget {
   Function(String) updatePointerCallback;
 
-  ITSemesterSeven(this.updatePointerCallback);
+  Semester6(this.updatePointerCallback);
 
   @override
-  State<StatefulWidget> createState() => _ITSemesterSevenState();
+  State<StatefulWidget> createState() => _Semester6State();
 }
 
-class _ITSemesterSevenState extends State<ITSemesterSeven> {
-  String _simTheory = '';
-  String _simLab = '';
-  String _orbTheory = '';
+class _Semester6State extends State<Semester6> {
+  String _cdoTheory = '';
+  String _cdoLab = '';
+  String _ivpTheory = '';
+  String _ivpLab = '';
+  String _dmwTheory = '';
+  String _dmwLab = '';
   String _elective1 = '';
   String _elective2 = '';
   String _miniProject = '';
@@ -32,15 +35,24 @@ class _ITSemesterSevenState extends State<ITSemesterSeven> {
             children: <Widget>[
               createGradeInput(
                 context,
-                'System Modeling and Simulating',
+                'Compiler Design',
                 isThereAnyLab: true,
-                onChangeTheory: _updateSIMTheoryGrade,
-                onChangeLab: _updateSIMLabGrade,
+                onChangeTheory: _updateCDOTheoryGrade,
+                onChangeLab: _updateCDOLabGrade,
               ),
               createGradeInput(
                 context,
-                'Organizational Behaviour',
-                onChangeTheory: _updateORBTheoryGrade,
+                'Image and Video Processing',
+                isThereAnyLab: true,
+                onChangeTheory: _updateIVPTheoryGrade,
+                onChangeLab: _updateIVPLabGrade,
+              ),
+              createGradeInput(
+                context,
+                'Data Mining and Warehousing',
+                isThereAnyLab: true,
+                onChangeTheory: _updateDMWTheoryGrade,
+                onChangeLab: _updateDMWLabGrade,
               ),
               createGradeInput(
                 context,
@@ -65,18 +77,33 @@ class _ITSemesterSevenState extends State<ITSemesterSeven> {
     );
   }
 
-  void _updateSIMTheoryGrade(dynamic grade) {
-    _simTheory = grade as String;
+  void _updateCDOTheoryGrade(dynamic grade) {
+    _cdoTheory = grade as String;
     _updateFinalPointer();
   }
 
-  void _updateSIMLabGrade(dynamic grade) {
-    _simLab = grade as String;
+  void _updateCDOLabGrade(dynamic grade) {
+    _cdoLab = grade as String;
     _updateFinalPointer();
   }
 
-  void _updateORBTheoryGrade(dynamic grade) {
-    _orbTheory = grade as String;
+  void _updateIVPTheoryGrade(dynamic grade) {
+    _ivpTheory = grade as String;
+    _updateFinalPointer();
+  }
+
+  void _updateIVPLabGrade(dynamic grade) {
+    _ivpLab = grade as String;
+    _updateFinalPointer();
+  }
+
+  void _updateDMWTheoryGrade(dynamic grade) {
+    _dmwTheory = grade as String;
+    _updateFinalPointer();
+  }
+
+  void _updateDMWLabGrade(dynamic grade) {
+    _dmwLab = grade as String;
     _updateFinalPointer();
   }
 
@@ -96,10 +123,13 @@ class _ITSemesterSevenState extends State<ITSemesterSeven> {
   }
 
   void _updateFinalPointer() {
-    String fp = calculateITSemSevenGPA(
-        simTheory: _simTheory,
-        simLab: _simLab,
-        orbTheory: _orbTheory,
+    String fp = calculateITSemSixGPA(
+        cdoTheory: _cdoTheory,
+        cdoLab: _cdoLab,
+        ivpTheory: _ivpTheory,
+        ivpLab: _ivpLab,
+        dmwTheory: _dmwTheory,
+        dmwLab: _dmwLab,
         elective1: _elective1,
         elective2: _elective2,
         miniProject: _miniProject);

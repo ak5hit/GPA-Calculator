@@ -3,18 +3,16 @@ import 'package:gpa_calculator/Utils.dart';
 import 'package:gpa_calculator/WithoutOverScrollShadowBehaviour.dart';
 
 // ignore: must_be_immutable
-class ITSemesterFour extends StatefulWidget {
-
+class Semester4 extends StatefulWidget {
   Function(String) updatePointerCallback;
 
-  ITSemesterFour(this.updatePointerCallback);
+  Semester4(this.updatePointerCallback);
 
   @override
-  State<StatefulWidget> createState() => _ITSemesterFourState();
+  State<StatefulWidget> createState() => _Semester4State();
 }
 
-class _ITSemesterFourState extends State<ITSemesterFour> {
-
+class _Semester4State extends State<Semester4> {
   String _mathTheory = '';
   String _daaTheory = '';
   String _daaLab = '';
@@ -37,30 +35,36 @@ class _ITSemesterFourState extends State<ITSemesterFour> {
               createGradeInput(
                 context,
                 'Mathematics - 3',
-                onChangeTheory: _updateMathsGrade,),
+                onChangeTheory: _updateMathsGrade,
+              ),
               createGradeInput(
                 context,
                 'Design and Analysis of Algorithms',
                 isThereAnyLab: true,
                 onChangeTheory: _updateDAATheoryGrade,
-                onChangeLab: _updateDAALabGrade,),
+                onChangeLab: _updateDAALabGrade,
+              ),
               createGradeInput(
                 context,
                 'Principles of Programming Languages',
-                onChangeTheory: _updatePPLGrade,),
+                onChangeTheory: _updatePPLGrade,
+              ),
               createGradeInput(
                 context,
                 'Database Management Systems',
                 isThereAnyLab: true,
                 onChangeTheory: _updateDBMSTheoryGrade,
-                onChangeLab: _updateDBMSLabGrade,),
+                onChangeLab: _updateDBMSLabGrade,
+              ),
               createGradeInput(
                 context,
                 'Principles of Communication',
                 isThereAnyLab: true,
                 onChangeTheory: _updatePOCTheoryGrade,
-                onChangeLab: _updatePOCLabGrade,),
-            ],),
+                onChangeLab: _updatePOCLabGrade,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -115,7 +119,8 @@ class _ITSemesterFourState extends State<ITSemesterFour> {
       dbmsTheory: _dbmsTheory,
       dbmsLab: _dbmsLab,
       pocTheory: _pocTheory,
-      pocLab: _pocLab,);
+      pocLab: _pocLab,
+    );
 
     print('Final Pointer: ' + fp);
 

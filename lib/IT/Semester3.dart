@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:gpa_calculator/Utils.dart';
 import 'package:gpa_calculator/WithoutOverScrollShadowBehaviour.dart';
+
 // ignore: must_be_immutable
-class ITSemesterThree extends StatefulWidget {
+class Semester3 extends StatefulWidget {
   Function(String) updatePointerCallback;
 
-  ITSemesterThree(this.updatePointerCallback);
+  Semester3(this.updatePointerCallback);
 
   @override
-  State<StatefulWidget> createState() => _ITSemesterThreeState();
+  State<StatefulWidget> createState() => _Semester3State();
 }
 
-class _ITSemesterThreeState extends State<ITSemesterThree> {
-
+class _Semester3State extends State<Semester3> {
   String _mathTheory = '';
   String _osTheory = '';
   String _osLab = '';
@@ -35,30 +35,36 @@ class _ITSemesterThreeState extends State<ITSemesterThree> {
               createGradeInput(
                 context,
                 'Mathematics - 2',
-                onChangeTheory: _updateMathsGrade,),
+                onChangeTheory: _updateMathsGrade,
+              ),
               createGradeInput(
                 context,
                 'Operating System',
                 isThereAnyLab: true,
                 onChangeTheory: _updateOSTheoryGrade,
-                onChangeLab: _updateOSLabGrade,),
+                onChangeLab: _updateOSLabGrade,
+              ),
               createGradeInput(
                 context,
                 'Theory of Computation',
-                onChangeTheory: _updateTOCGrade,),
+                onChangeTheory: _updateTOCGrade,
+              ),
               createGradeInput(
                 context,
                 'Object Oriented Methodologies',
                 isThereAnyLab: true,
                 onChangeTheory: _updateOOMTheoryGrade,
-                onChangeLab: _updateOOMLabGrade,),
+                onChangeLab: _updateOOMLabGrade,
+              ),
               createGradeInput(
                 context,
                 'Microprocessors',
                 isThereAnyLab: true,
                 onChangeTheory: _updateMIPTheoryGrade,
-                onChangeLab: _updateMICLabGrade,),
-            ],),
+                onChangeLab: _updateMICLabGrade,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -113,7 +119,8 @@ class _ITSemesterThreeState extends State<ITSemesterThree> {
       dbmsTheory: _oomTheory,
       dbmsLab: _oomLab,
       pocTheory: _micTheory,
-      pocLab: _micLab,);
+      pocLab: _micLab,
+    );
 
     widget.updatePointerCallback(fp);
   }

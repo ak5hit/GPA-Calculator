@@ -3,18 +3,16 @@ import 'package:gpa_calculator/Utils.dart';
 import 'package:gpa_calculator/WithoutOverScrollShadowBehaviour.dart';
 
 // ignore: must_be_immutable
-class ITSemesterEight extends StatefulWidget {
+class Semester8 extends StatefulWidget {
   Function(String) updatePointerCallback;
 
-  ITSemesterEight(this.updatePointerCallback);
+  Semester8(this.updatePointerCallback);
 
   @override
-  State<StatefulWidget> createState() => _ITSemesterEightState();
+  State<StatefulWidget> createState() => _Semester8State();
 }
 
-class _ITSemesterEightState extends State<ITSemesterEight> {
-  String _posTheory = '';
-  String _elective = '';
+class _Semester8State extends State<Semester8> {
   String _miniProject = '';
 
   @override
@@ -29,16 +27,6 @@ class _ITSemesterEightState extends State<ITSemesterEight> {
             children: <Widget>[
               createGradeInput(
                 context,
-                'Philosophy of Science',
-                onChangeTheory: _updatePOSTheoryGrade,
-              ),
-              createGradeInput(
-                context,
-                'Elective',
-                onChangeTheory: _updateElectiveGrade,
-              ),
-              createGradeInput(
-                context,
                 'Mini Project',
                 hintString: 'Project Grade',
                 onChangeTheory: _updateMiniProjectGrade,
@@ -50,24 +38,13 @@ class _ITSemesterEightState extends State<ITSemesterEight> {
     );
   }
 
-  void _updatePOSTheoryGrade(dynamic grade) {
-    _posTheory = grade as String;
-    _updateFinalPointer();
-  }
-
-  void _updateElectiveGrade(dynamic grade) {
-    _elective = grade as String;
-    _updateFinalPointer();
-  }
-
   void _updateMiniProjectGrade(dynamic grade) {
     _miniProject = grade as String;
     _updateFinalPointer();
   }
 
   void _updateFinalPointer() {
-    String fp = calculateITSemEightGPA(
-        posLab: _posTheory, elective: _elective, miniProject: _miniProject);
+    String fp = calculateECESemEightGPA(miniProject: _miniProject);
 
     widget.updatePointerCallback(fp);
   }

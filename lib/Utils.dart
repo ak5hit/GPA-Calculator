@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// Don't auto indent this file, never.
+
 const branchNames = ['IT', 'ECE'];
 const pointer = ['GPA', 'CGPA'];
 const theoryString = 'Theory Grade';

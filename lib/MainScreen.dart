@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:gpa_calculator/IT/ITSemesterOne.dart';
-import 'package:gpa_calculator/IT/ITSemesterTwo.dart';
-import 'package:gpa_calculator/IT/ITSemesterThree.dart';
-import 'package:gpa_calculator/IT/ITSemesterFour.dart';
-import 'package:gpa_calculator/IT/ITSemesterFive.dart';
-import 'package:gpa_calculator/IT/ITSemesterSix.dart';
-import 'package:gpa_calculator/IT/ITSemesterSeven.dart';
-import 'package:gpa_calculator/IT/ITSemesterEight.dart';
-import 'package:gpa_calculator/ECE/ECESemesterThree.dart';
-import 'package:gpa_calculator/ECE/ECESemesterFour.dart';
-import 'package:gpa_calculator/ECE/ECESemesterFive.dart';
-import 'package:gpa_calculator/ECE/ECESemesterSix.dart';
-import 'package:gpa_calculator/ECE/ECESemesterSeven.dart';
-import 'package:gpa_calculator/ECE/ECESemesterEight.dart';
+import 'package:gpa_calculator/IT/Semester1.dart' as it;
+import 'package:gpa_calculator/IT/Semester2.dart' as it;
+import 'package:gpa_calculator/IT/Semester3.dart' as it;
+import 'package:gpa_calculator/IT/Semester4.dart' as it;
+import 'package:gpa_calculator/IT/Semester5.dart' as it;
+import 'package:gpa_calculator/IT/Semester6.dart' as it;
+import 'package:gpa_calculator/IT/Semester7.dart' as it;
+import 'package:gpa_calculator/IT/Semester8.dart' as it;
+
+import 'package:gpa_calculator/ECE/Semester3.dart' as ece;
+import 'package:gpa_calculator/ECE/Semester4.dart' as ece;
+import 'package:gpa_calculator/ECE/Semester5.dart' as ece;
+import 'package:gpa_calculator/ECE/Semester6.dart' as ece;
+import 'package:gpa_calculator/ECE/Semester7.dart' as ece;
+import 'package:gpa_calculator/ECE/Semester8.dart' as ece;
+
 import 'CGPAScreen.dart';
 import 'Utils.dart';
 
@@ -54,56 +56,55 @@ class _MainScreenState extends State<MainScreen> {
       if (_selectedBranch == 0) {
         switch (_selectedSemester) {
           case 1:
-            mainBodyColumn.children.add(ITSemesterOne(updatePointerCallback));
+            mainBodyColumn.children.add(it.Semester1(updatePointerCallback));
             break;
           case 2:
-            mainBodyColumn.children.add(ITSemesterTwo(updatePointerCallback));
+            mainBodyColumn.children.add(it.Semester2(updatePointerCallback));
             break;
           case 3:
-            mainBodyColumn.children.add(ITSemesterThree(updatePointerCallback));
+            mainBodyColumn.children.add(it.Semester3(updatePointerCallback));
             break;
           case 4:
-            mainBodyColumn.children.add(ITSemesterFour(updatePointerCallback));
+            mainBodyColumn.children.add(it.Semester4(updatePointerCallback));
             break;
           case 5:
-            mainBodyColumn.children.add(ITSemesterFive(updatePointerCallback));
+            mainBodyColumn.children.add(it.Semester5(updatePointerCallback));
             break;
           case 6:
-            mainBodyColumn.children.add(ITSemesterSix(updatePointerCallback));
+            mainBodyColumn.children.add(it.Semester6(updatePointerCallback));
             break;
           case 7:
-            mainBodyColumn.children.add(ITSemesterSeven(updatePointerCallback));
+            mainBodyColumn.children.add(it.Semester7(updatePointerCallback));
             break;
           case 8:
-            mainBodyColumn.children.add(ITSemesterEight(updatePointerCallback));
+            mainBodyColumn.children.add(it.Semester8(updatePointerCallback));
             break;
         }
       } else if (_selectedBranch == 1) {
         switch (_selectedSemester) {
           case 1:
-            mainBodyColumn.children.add(ITSemesterOne(updatePointerCallback));
+            mainBodyColumn.children.add(it.Semester1(updatePointerCallback));
             break;
           case 2:
-            mainBodyColumn.children.add(ITSemesterTwo(updatePointerCallback));
+            mainBodyColumn.children.add(it.Semester2(updatePointerCallback));
             break;
           case 3:
-            mainBodyColumn.children
-                .add(ECESemesterThree(updatePointerCallback));
+            mainBodyColumn.children.add(ece.Semester3(updatePointerCallback));
             break;
           case 4:
-            mainBodyColumn.children.add(ECESemesterFour(updatePointerCallback));
+            mainBodyColumn.children.add(ece.Semester4(updatePointerCallback));
             break;
           case 5:
-            mainBodyColumn.children.add(ECESemesterFive(updatePointerCallback));
+            mainBodyColumn.children.add(ece.Semester5(updatePointerCallback));
             break;
           case 6:
-            mainBodyColumn.children.add(ECESemesterSix(updatePointerCallback));
+            mainBodyColumn.children.add(ece.Semester6(updatePointerCallback));
             break;
           case 7:
-            mainBodyColumn.children.add(ECESemesterSeven(updatePointerCallback));
+            mainBodyColumn.children.add(ece.Semester7(updatePointerCallback));
             break;
           case 8:
-            mainBodyColumn.children.add(ECESemesterEight(updatePointerCallback));
+            mainBodyColumn.children.add(ece.Semester8(updatePointerCallback));
             break;
         }
       }

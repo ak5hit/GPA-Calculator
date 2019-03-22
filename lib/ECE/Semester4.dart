@@ -3,16 +3,16 @@ import 'package:gpa_calculator/Utils.dart';
 import 'package:gpa_calculator/WithoutOverScrollShadowBehaviour.dart';
 
 // ignore: must_be_immutable
-class ECESemesterFour extends StatefulWidget {
+class Semester4 extends StatefulWidget {
   Function(String) updatePointerCallback;
 
-  ECESemesterFour(this.updatePointerCallback);
+  Semester4(this.updatePointerCallback);
 
   @override
-  State<StatefulWidget> createState() => _ECESemesterFourState();
+  State<StatefulWidget> createState() => _Semester4State();
 }
 
-class _ECESemesterFourState extends State<ECESemesterFour> {
+class _Semester4State extends State<Semester4> {
   String _dtsTheory = '';
   String _emiTheory = '';
   String _emiLab = '';
