@@ -18,8 +18,14 @@ class _CGPAScreenState extends State<CGPAScreen> {
   List<TextEditingController> textEditingControllers;
 
   @override
+  void initState() {
+    super.initState();
+    textEditingControllers =
+        List.generate(8, (_) => new TextEditingController());
+  }
+
+  @override
   Widget build(BuildContext context) {
-    print("BUILD CALLED !! ");
     var gpaTextFields = <Widget>[];
 
     for (int i = 1; i <= widget.semestersDone; ++i) {
@@ -76,7 +82,6 @@ class _CGPAScreenState extends State<CGPAScreen> {
   void _updateCGPA(dynamic gpa) {
     var _gpas = <String>[];
     textEditingControllers.forEach((controller) => _gpas.add(controller.text));
-
     String cgpa = calculateCGPAFor(_gpas, widget.semestersDone);
     widget.updatePointerCallback(cgpa);
   }
