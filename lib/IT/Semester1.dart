@@ -26,6 +26,7 @@ class _Semester1State extends State<Semester1> {
 
   @override
   Widget build(BuildContext context) {
+    print("SEM 1 BUILD CALLED");
     return Flexible(
       child: Padding(
         padding: const EdgeInsets.all(12.0),

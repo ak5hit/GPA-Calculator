@@ -15,53 +15,28 @@ class CGPAScreen extends StatefulWidget {
 }
 
 class _CGPAScreenState extends State<CGPAScreen> {
-  List<StringBuffer> _gpas;
-  List<TextEditingController> _controllers;
-
-  @override
-  void initState() {
-    super.initState();
-    _gpas = List(widget.semestersDone);
-    _controllers = List(widget.semestersDone);
-    for (int i = 0; i < widget.semestersDone; ++i) {
-      _controllers[i] = TextEditingController();
-    }
-  }
-
-  @override
-  void dispose() {
-    for (int i = 0; i < widget.semestersDone; ++i) _controllers[i].dispose();
-    super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(CGPAScreen oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    _gpas = List(widget.semestersDone);
-    _controllers = List(widget.semestersDone);
-    for (int i = 0; i < widget.semestersDone; ++i) {
-      _controllers[i] = TextEditingController();
-      _gpas[i] = StringBuffer();
-    }
-  }
+  List<TextEditingController> textEditingControllers;
 
   @override
   Widget build(BuildContext context) {
+    print("BUILD CALLED !! ");
+    var gpaTextFields = <Widget>[];
+
+    for (int i = 1; i <= widget.semestersDone; ++i) {
+      gpaTextFields.add(
+          _createGPAInputField(
+              context, 'Semester $i', textEditingControllers[i - 1],
+              onChanged: _updateCGPA));
+    }
+
     return Flexible(
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: ScrollConfiguration(
           behavior: WithoutOverScrollShadowBehaviour(),
-          child: ListView.builder(
-              itemCount: widget.semestersDone,
-              itemBuilder: (BuildContext context, int index) {
-                return _createGPAInputField(
-                  context,
-                  'Semester ${index + 1}',
-                  _controllers[index],
-                  onChanged: _updateCGPA,
-                );
-              }),
+          child: new Column(
+            children: gpaTextFields,
+          ),
         ),
       ),
     );
@@ -99,13 +74,10 @@ class _CGPAScreenState extends State<CGPAScreen> {
   }
 
   void _updateCGPA(dynamic gpa) {
-    for (int i = 0; i < widget.semestersDone; ++i) {
-      _gpas[i].clear();
-      _gpas[i].write(_controllers[i].text);
-    }
+    var _gpas = <String>[];
+    textEditingControllers.forEach((controller) => _gpas.add(controller.text));
 
     String cgpa = calculateCGPAFor(_gpas, widget.semestersDone);
-    print('CGPA: $cgpa');
     widget.updatePointerCallback(cgpa);
   }
 }

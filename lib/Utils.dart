@@ -351,26 +351,30 @@ String calculateECESemEightGPA({
 }
 
 
-String calculateCGPAFor(List<StringBuffer> gpas, int semestersDone) {
+String calculateCGPAFor(List<String> gpas, int semestersDone) {
   double num = 0,
       den = 0;
   for (int i = 0; i < semestersDone; ++i) {
-    num += formatInputGPA(gpas[i].toString()) * creditsForSem(i);
-    print((gpas[i].toString() == '') ? 0 : 1);
-    den += ((gpas[i].toString() != '') ? 0 : 1) * creditsForSem(i);
+    num += formatInputGPA(gpas[i]) * creditsForSem(i);
+//    print((gpas[i].toString() == '') ? 0 : 1);
+    den += ((gpas[i] == "") ? 0 : 1) * creditsForSem(i);
+
+//    print("num: " + num.toString());
+//    print("den: " + den.toString());
   }
   double fp = num / den;
   return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
 }
 
 double formatInputGPA(String gpa) {
-  if (double.tryParse(gpa) == null) {
-    print("Unable to convert to double $gpa");
-    return 0;
-  } else {
-    print("Converted $gpa");
-    return double.tryParse(gpa);
-  }
+//  if (double.tryParse(gpa) == null) {
+////    print("Unable to convert to double $gpa");
+//    return 0;
+//  } else {
+////    print("Converted $gpa");
+//    return double.tryParse(gpa);
+//  }
+  return double.tryParse(gpa) == null ? double.parse("0") : double.tryParse(gpa);
 }
 
 String formatInputGrade(String inputGrade) => inputGrade.toUpperCase();

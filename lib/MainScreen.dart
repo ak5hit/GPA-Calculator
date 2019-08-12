@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gpa_calculator/ECE/Semester3.dart' as ece;
+import 'package:gpa_calculator/ECE/Semester4.dart' as ece;
+import 'package:gpa_calculator/ECE/Semester5.dart' as ece;
+import 'package:gpa_calculator/ECE/Semester6.dart' as ece;
+import 'package:gpa_calculator/ECE/Semester7.dart' as ece;
+import 'package:gpa_calculator/ECE/Semester8.dart' as ece;
 import 'package:gpa_calculator/IT/Semester1.dart' as it;
 import 'package:gpa_calculator/IT/Semester2.dart' as it;
 import 'package:gpa_calculator/IT/Semester3.dart' as it;
@@ -7,13 +13,6 @@ import 'package:gpa_calculator/IT/Semester5.dart' as it;
 import 'package:gpa_calculator/IT/Semester6.dart' as it;
 import 'package:gpa_calculator/IT/Semester7.dart' as it;
 import 'package:gpa_calculator/IT/Semester8.dart' as it;
-
-import 'package:gpa_calculator/ECE/Semester3.dart' as ece;
-import 'package:gpa_calculator/ECE/Semester4.dart' as ece;
-import 'package:gpa_calculator/ECE/Semester5.dart' as ece;
-import 'package:gpa_calculator/ECE/Semester6.dart' as ece;
-import 'package:gpa_calculator/ECE/Semester7.dart' as ece;
-import 'package:gpa_calculator/ECE/Semester8.dart' as ece;
 
 import 'CGPAScreen.dart';
 import 'Utils.dart';
