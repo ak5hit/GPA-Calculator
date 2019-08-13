@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // Don't auto indent this file, never.
 
@@ -350,31 +351,29 @@ String calculateECESemEightGPA({
   return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
 }
 
+saveGradesFor(String branchSem, List<String> grades) async {
+  var prefs = await SharedPreferences.getInstance();
+  prefs.setStringList(branchSem, grades);
+}
+
+Future<List<String>> readGradesFor(String branchSem) async {
+  var prefs = await SharedPreferences.getInstance();
+  return prefs.getStringList(branchSem) ?? new List<String>();
+}
 
 String calculateCGPAFor(List<String> gpas, int semestersDone) {
   double num = 0,
       den = 0;
   for (int i = 0; i < semestersDone; ++i) {
     num += formatInputGPA(gpas[i]) * creditsForSem(i);
-//    print((gpas[i].toString() == '') ? 0 : 1);
     den += ((gpas[i] == "") ? 0 : 1) * creditsForSem(i);
-
-//    print("num: " + num.toString());
-//    print("den: " + den.toString());
   }
   double fp = num / den;
   return fp.isFinite ? fp.toStringAsFixed(2) : '0.0';
 }
 
 double formatInputGPA(String gpa) {
-//  if (double.tryParse(gpa) == null) {
-////    print("Unable to convert to double $gpa");
-//    return 0;
-//  } else {
-////    print("Converted $gpa");
-//    return double.tryParse(gpa);
-//  }
-  return double.tryParse(gpa) == null ? double.parse("0") : double.tryParse(gpa);
+  return double.tryParse(gpa) ?? double.parse("0");
 }
 
 String formatInputGrade(String inputGrade) => inputGrade.toUpperCase();
@@ -427,6 +426,10 @@ Widget createGradeInput(BuildContext context, String courseName,
       ValueChanged<dynamic> onChangeTheory = null,
       // ignore: avoid_init_to_null
       ValueChanged<dynamic> onChangeLab = null,
+      // ignore: avoid_init_to_null
+      TextEditingController controllerTheory = null,
+      // ignore: avoid_init_to_null
+      TextEditingController controllerLab = null,
       String hintString = theoryString,}) {
   if (isThereAnyLab) {
     // If there is lab
@@ -442,8 +445,10 @@ Widget createGradeInput(BuildContext context, String courseName,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            createInputFieldForRow(context, theoryString, onChangeTheory),
-            createInputFieldForRow(context, labString, onChangeLab),
+            createInputFieldForRow(
+                context, theoryString, onChangeTheory, controllerTheory),
+            createInputFieldForRow(
+                context, labString, onChangeLab, controllerLab),
           ],
         ),
       ],
@@ -461,14 +466,14 @@ Widget createGradeInput(BuildContext context, String courseName,
         ),
         createInputField(context,
           hintString != null ? hintString : theoryString,
-          onChangeTheory,)
+            onChangeTheory, controllerTheory)
       ],
     );
   }
 }
 
 Widget createInputFieldForRow(BuildContext context, String hint,
-    ValueChanged<dynamic> onChanged,) {
+    ValueChanged<dynamic> onChanged, TextEditingController controller) {
   return Flexible(
     child: Container(
       margin: EdgeInsets.symmetric(horizontal: 12.0),
@@ -492,6 +497,7 @@ Widget createInputFieldForRow(BuildContext context, String hint,
           hintText: '$hint',
         ),
         onChanged: onChanged,
+        controller: controller,
         cursorWidth: 1.0,
         cursorColor: Colors.black,
         textAlign: TextAlign.center,
@@ -501,7 +507,7 @@ Widget createInputFieldForRow(BuildContext context, String hint,
 }
 
 Widget createInputField(BuildContext context, String hint,
-    ValueChanged<dynamic> onChanged) {
+    ValueChanged<dynamic> onChanged, TextEditingController controller) {
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 12.0),
     decoration: BoxDecoration(
@@ -524,6 +530,7 @@ Widget createInputField(BuildContext context, String hint,
         hintText: '$hint',
       ),
       onChanged: onChanged,
+      controller: controller,
       cursorWidth: 1.0,
       cursorColor: Colors.black,
       textAlign: TextAlign.center,

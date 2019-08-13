@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gpa_calculator/Utils.dart';
 import 'package:gpa_calculator/WithoutOverScrollShadowBehaviour.dart';
+import 'package:gpa_calculator/Constants.dart';
 
 // ignore: must_be_immutable
 class Semester1 extends StatefulWidget {
@@ -25,8 +26,25 @@ class _Semester1State extends State<Semester1> {
   String _lcsLab = '';
 
   @override
+  void dispose() {
+    List<String> grades = [
+      _edcTheory,
+      _edcLab,
+      _itpTheory,
+      _itpLab,
+      _matTheory,
+      _egpTheory,
+      _egpLab,
+      _casTheory,
+      _itcLab,
+      _lcsLab
+    ];
+    saveGradesFor(Constants.IT_SEM1_KEY, grades);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    print("SEM 1 BUILD CALLED");
     return Flexible(
       child: Padding(
         padding: const EdgeInsets.all(12.0),

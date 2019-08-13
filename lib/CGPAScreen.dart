@@ -9,7 +9,6 @@ class CGPAScreen extends StatefulWidget {
   final Function(String) updatePointerCallback;
 
   CGPAScreen(this.semestersDone, this.updatePointerCallback);
-
   @override
   State<StatefulWidget> createState() => _CGPAScreenState();
 }
@@ -26,22 +25,20 @@ class _CGPAScreenState extends State<CGPAScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var gpaTextFields = <Widget>[];
-
-    for (int i = 1; i <= widget.semestersDone; ++i) {
-      gpaTextFields.add(
-          _createGPAInputField(
-              context, 'Semester $i', textEditingControllers[i - 1],
-              onChanged: _updateCGPA));
-    }
 
     return Flexible(
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: ScrollConfiguration(
           behavior: WithoutOverScrollShadowBehaviour(),
-          child: new Column(
-            children: gpaTextFields,
+          child: ListView.builder(
+              itemCount: widget.semestersDone,
+              itemBuilder: (context, index) {
+                return _createGPAInputField(
+                    context, 'Semester ${index + 1}',
+                    textEditingControllers[index],
+                    onChanged: _updateCGPA);
+              }
           ),
         ),
       ),

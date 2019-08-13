@@ -4,7 +4,7 @@ import 'MainScreen.dart';
 void main() => runApp(GPACalculatorApp());
 
 class GPACalculatorApp extends StatelessWidget {
-  // This widget is the root of your application.
+  // This widget is the root of application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,6 +16,7 @@ class GPACalculatorApp extends StatelessWidget {
       home: MainScreen(
         title: 'GPA Calculator',
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
